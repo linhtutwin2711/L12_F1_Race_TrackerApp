@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Race Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="container">
+  <h1>2026 Driver Standings</h1>
+<% if (drivers.length === 0) { %>
+    <p class="empty">No drivers found.</p>
+  <% } else { %>
+    <div class="grid">
+      <% for (var i = 0; i < drivers.length; i++) { %>
+        <div class="card">
+          <h3><%= drivers[i].name %></h3>
+          <p class="team"><%= drivers[i].team %></p>
+          <hr>
+          <div class="meta">
+            <div>Engine: <strong><%= drivers[i].engine %></strong></div>
+            <div>Points: <strong><%= drivers[i].points %></strong></div>
+          </div>
+          <a class="view-link" href="/drivers/<%= drivers[i].id %>">View Details›</a>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+  <a class="btn-add" href="/add">+ Add Driver</a>
+</div>
+</body>
+</html>

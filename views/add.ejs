@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Driver – F1 Race Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="container">
+  <h1>Add New Driver</h1>
+  <% if (errors.length > 0) { %>
+    <div class="errors"><ul>
+      <% for (var i = 0; i < errors.length; i++) { %><li><%= errors[i] %></li><% } %>
+    </ul></div>
+  <% } %>
+  <div class="form-card">
+    <form method="POST" action="/add">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Driver Name</label>
+          <input type="text" name="name" value="<%= body.name || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Car No.</label>
+          <input type="number" name="carNo" value="<%= body.carNo || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Team</label>
+          <input type="text" name="team" value="<%= body.team || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Points</label>
+          <input type="number" name="points" value="<%= body.points || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Engine Supplier</label>
+          <input type="text" name="engine" value="<%= body.engine || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Race Wins</label>
+          <input type="number" name="wins" value="<%= body.wins || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Nationality</label>
+          <input type="text" name="nationality" value="<%= body.nationality || '' %>">
+        </div>
+        <div class="form-group">
+          <label>Podiums</label>
+          <input type="number" name="podiums" value="<%= body.podiums || '' %>">
+        </div>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="btn btn-primary">Save Driver</button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

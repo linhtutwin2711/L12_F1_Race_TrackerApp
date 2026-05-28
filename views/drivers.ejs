@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Driver Standings – F1 Race Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="container">
+  <h1>Championship Standings</h1>
+
+  <div class="podium-row">
+    <% if (standings.length >= 2) { %>
+    <div class="podium-card silver">
+      <div class="podium-pos">2</div>
+      <div class="podium-name"><%= standings[1].name %></div>
+      <div class="podium-team"><%= standings[1].team %></div>
+      <div class="podium-pts"><%= standings[1].points %> pts</div>
+    </div>
+    <% } %>
+    <% if (standings.length >= 1) { %>
+    <div class="podium-card gold">
+      <div class="podium-crown">&#9733;</div>
+      <div class="podium-pos">1</div>
+      <div class="podium-name"><%= standings[0].name %></div>
+      <div class="podium-team"><%= standings[0].team %></div>
+      <div class="podium-pts"><%= standings[0].points %> pts</div>
+    </div>
+    <% } %>
+    <% if (standings.length >= 3) { %>
+    <div class="podium-card bronze">
+      <div class="podium-pos">3</div>
+      <div class="podium-name"><%= standings[2].name %></div>
+      <div class="podium-team"><%= standings[2].team %></div>
+      <div class="podium-pts"><%= standings[2].points %> pts</div>
+    </div>
+    <% } %>
+  </div>
+
+  <table class="standings-table">
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Driver</th>
+        <th>Team</th>
+        <th>Car #</th>
+        <th>Wins</th>
+        <th>Podiums</th>
+        <th>Points</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (var i = 0; i < standings.length; i++) { %>
+      <tr class="<%= i === 0 ? 'row-gold' : i === 1 ? 'row-silver' : i === 2 ? 'row-bronze' : '' %>">
+        <td class="pos-cell"><%= i + 1 %></td>
+        <td class="name-cell"><%= standings[i].name %></td>
+        <td><%= standings[i].team %></td>
+        <td>#<%= standings[i].carNo %></td>
+        <td><%= standings[i].wins %></td>
+        <td><%= standings[i].podiums %></td>
+        <td class="pts-cell"><%= standings[i].points %></td>
+        <td><a class="view-link" href="/drivers/<%= standings[i].id %>">View ›</a></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
